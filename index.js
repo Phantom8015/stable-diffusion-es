@@ -14,10 +14,10 @@ function generateHash() {
     }
 }
 
-function generate(prompta, cb) {
+function generate(givenPrompt, cb) {
     const client = new WebSocket(API_URL);
     const hash = generateHash()
-    let prompt = prompta + " 4k resolution, realistic, epic cinematic, detailed, vibrant lighting, vibrant background, in the mix of 3d cartoon and comic art styles"
+    let prompt = givenPrompt + " 4k resolution, realistic, epic cinematic, detailed, vibrant lighting, vibrant background, in the mix of 3d cartoon and comic art styles"
     let tmr = setTimeout(() => {
         client.close()
         cb({
@@ -47,6 +47,7 @@ function generate(prompta, cb) {
             client.send(JSON.stringify(data))
         } else if (msg.msg == "process_completed") {
             clearTimeout(tmr)
+            console.log("Done!")
             try{
                 const results = msg.output.data[0]
                 cb({
