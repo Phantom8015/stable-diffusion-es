@@ -1,5 +1,5 @@
 {
-  "name": "stable_diffusion_client",
+  "name": "@phantom8015/stable_diffusion",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
