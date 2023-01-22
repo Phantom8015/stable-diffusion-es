@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
-  "keywords": [],
-  "author": "",
+  "keywords": ["ai","stable-diffusion","stable-diffusion-es","es","image"],
+  "author": "Jake Cash",
   "license": "ISC",
   "dependencies": {
     "ws": "^8.12.0"
