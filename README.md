@@ -1,6 +1,6 @@
 # stable-diffusion-es
 
-This is an ES module for [![Node.js]](https://nodejs.org/en/) that provides uses Stable Diffusion to generate images from a given prompt using AI.
+This is an ES module for [Node.js](https://nodejs.org/en/) that provides uses Stable Diffusion to generate images from a given prompt using AI.
 
 ## Installation
 
