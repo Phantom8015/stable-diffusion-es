@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
   "keywords": [
     "ai",
     "stable-diffusion",
@@ -17,6 +16,7 @@
   "author": "Jake Cash",
   "license": "ISC",
   "dependencies": {
+    "websocket": "^1.0.34",
     "ws": "^8.12.0"
   }
 }

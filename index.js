@@ -1,4 +1,4 @@
-import WebSocket from 'ws';
+const WebSocket = require('ws');
 
 const API_URL = "wss://runwayml-stable-diffusion-v1-5.hf.space/queue/join"
 
@@ -71,6 +71,6 @@ function generate(prompta, cb) {
     })
 }
 
-export default {
+module.exports = {
     generate
 }
