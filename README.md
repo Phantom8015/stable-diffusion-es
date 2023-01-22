@@ -33,6 +33,13 @@ let prompt = "A cat"
     }
 })
 ```
+Make sure you have
+
+```json
+"type": "module"
+```
+
+in your package.json file.
 
 ## Output
 

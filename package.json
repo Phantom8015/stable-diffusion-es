@@ -1,5 +1,5 @@
 {
-  "name": "stable_diffusion-es",
+  "name": "stable-diffusion-es",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
