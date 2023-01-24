@@ -39,6 +39,10 @@ A trick to get better images is to add:
 ```
 at the end of your prompt.
 
+
+
+#Important
+
 Make sure you have
 
 ```json
