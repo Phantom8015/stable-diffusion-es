@@ -1,6 +1,6 @@
 {
   "name": "stable-diffusion-es",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
   "author": "Jake Cash",
   "license": "ISC",
   "dependencies": {
+    "cb": "^0.1.1",
     "websocket": "^1.0.34",
     "ws": "^8.12.0"
   }
