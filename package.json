@@ -1,6 +1,6 @@
 {
   "name": "stable-diffusion-es",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,10 @@
     "image"
   ],
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Phantom8015/stable-diffusion-es.git"
+  },
   "author": "Jake Cash",
   "license": "ISC",
   "dependencies": {
