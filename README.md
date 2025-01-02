@@ -11,27 +11,19 @@ npm install stable-diffusion-es
 ## Usage
 
 ```js
-import AI from 'stable_diffusion-es';
-import fs from 'fs';
+import { generate } from 'stable-diffusion-es';
 
-let prompt = "A cat"
+const prompt = "A black cat";
 
- AI.generate(prompt, async (result) => {
-    if (result.error) {
-        console.log(result.error)
-        return;
+generate(prompt, (response) => {
+    if (response.error) {
+        console.log("There was an error generating the image.");
+    } else {
+        console.log("Image generated successfully!");
+        console.log(`Image saved at: ${response.results}`);
     }
-    try {
-        for (let i = 0; i < result.results.length; i++) {
-            let data = result.results[i].split(",")[1]
-            const buffer = Buffer.from(data, "base64")
-            const filename = `image_${i + 1}.png`
-            fs.writeFileSync(filename, buffer)
-        }
-    } catch (e) {
-        console.log(e)
-    }
-})
+});
+
 ```
 A trick to get better images is to add: 
 ```
@@ -51,7 +43,7 @@ in your package.json file.
 
 ## Output
 
-![A cat](https://i.ibb.co/qnThjNb/image-2.jpg)
+![A black cat](https://media.discordapp.net/attachments/1301965748025036915/1324491508434473060/image.png?ex=67785857&is=677706d7&hm=bfef4b28ef03aa4ea9a2e43c5bfcc090aa3ec9146bdcef551bc10c3c9821598c&=&format=webp&quality=lossless&width=525&height=525)
 
 
 

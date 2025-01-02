@@ -1,6 +1,6 @@
 {
   "name": "stable-diffusion-es",
-  "version": "1.0.9",
+  "version": "1.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,11 +18,10 @@
     "type": "git",
     "url": "https://github.com/Phantom8015/stable-diffusion-es.git"
   },
-  "author": "Jake Cash",
+  "author": "Evaan Chowdhry",
   "license": "ISC",
   "dependencies": {
-    "cb": "^0.1.1",
-    "websocket": "^1.0.34",
-    "ws": "^8.12.0"
+    "axios": "^1.7.9"
+
   }
 }

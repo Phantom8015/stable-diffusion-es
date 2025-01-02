@@ -1,72 +1,40 @@
-import WebSocket from 'ws';
+import axios from 'axios';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const API_URL = "wss://runwayml-stable-diffusion-v1-5.hf.space/queue/join"
+const API_URL = 'https://stablediffusion-two.vercel.app/generate-image';
 
-function generateHash() {
-    const chars = "qwertyuopasdfghjklizxcvbnm0123456789"
-    let hash = ""
-    for (let i = 0; i < 11; i++) {
-        hash += chars[Math.floor(Math.random() * chars.length)]
-    }
-    return {
-        session_hash: hash,
-        fn_index: 2
-    }
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-let enhancements =  " realistic, smoothening, cinematic lighting."
-
-function generate(prompta, cb) {
-    const client = new WebSocket(API_URL);
-    const hash = generateHash()
-    let prompt = prompta
+export function generate(prompta, cb) {
+    let prompt = prompta;
     if (prompt.endsWith('{enhanced}')) {
-        prompt = prompt.replace('{enhanced}', enhancements)
+        prompt = prompt.replace('{enhanced}', "realistic, smoothening, epic cinematic lighting, dark villanous looking background.");
     }
-    let tmr = setTimeout(() => {
-        client.close()
-        cb({
-            error: true
-        })
-    }, 120000);
 
-    client.on("open", () => {
-        // console.log("Connected to Websocket!")
-    })
-
-    client.on("error",()=>{
-        cb({
-            error:true,
-        })
-    })
-
-    client.on("message", (message) => {
-        let msg = JSON.parse("" + message)
-        if (msg.msg == "send_hash") {
-            client.send(JSON.stringify(hash))
-        } else if (msg.msg == "send_data") {
-            let data = {
-                data: [prompt],
-                ...hash
-            }
-            client.send(JSON.stringify(data))
-        } else if (msg.msg == "process_completed") {
-            clearTimeout(tmr)
-            try{
-                const results = msg.output.data[0]
-                cb({
-                    error:false,
-                    results
-                })
-            }catch(e){
-                console.error(e)
-            }
+    const generateImage = async () => {
+        try {
+            const response = await axios.post(API_URL, { prompt }, { responseType: 'arraybuffer' });
             
+            if (response.status === 200) {
+                const filePath = path.join(__dirname, 'generated_image.jpg');
+                fs.writeFileSync(filePath, response.data);
+                cb({
+                    error: false,
+                    results: filePath
+                });
+                console.log(`Image saved at ${filePath}`);
+            } else {
+                console.log(`Error: ${response.status} - ${response.statusText}`);
+                cb({ error: true });
+            }
+        } catch (error) {
+            console.error('Error generating image:', error);
+            cb({ error: true });
         }
+    };
 
-    })
-}
-
-export default {
-    generate
+    generateImage();
 }
