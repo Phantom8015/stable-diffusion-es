@@ -12,17 +12,25 @@ npm install stable-diffusion-es
 
 ```js
 import { generate } from 'stable-diffusion-es';
+import fs from 'fs';
 
 const prompt = "A black cat";
 
-generate(prompt, (response) => {
-    if (response.error) {
-        console.log("There was an error generating the image.");
-    } else {
-        console.log("Image generated successfully!");
-        console.log(`Image saved at: ${response.results}`);
-    }
-});
+generate(prompt)
+    .then((response) => {
+        if (!response) {
+            console.log("There was an error generating the image.");
+        } else {
+            const filePath = './image.jpg';
+            fs.writeFileSync(filePath, response); 
+            console.log("Image generated successfully!");
+            console.log(`Image saved at: ${filePath}`);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
 
 ```
 A trick to get better images is to add: 
